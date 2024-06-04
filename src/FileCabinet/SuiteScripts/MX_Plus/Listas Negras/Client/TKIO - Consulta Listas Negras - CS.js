@@ -201,9 +201,9 @@ define(['N/currentRecord', 'N/ui/message', 'N/url', 'N/https', 'N/search', 'N/re
                 let validados = 0;
                 let completedVendors = 0;
                 let updatePercentage = 0;
-              for (let i = 0; i < arrSublist.length; i++) {
-                const remainingUsage = runtime.getCurrentScript().getRemainingUsage();
-                if (remainingUsage < 100) {
+              //for (let i = 0; i < arrSublist.length; i++) {
+                //const remainingUsage = runtime.getCurrentScript().getRemainingUsage();
+                //if (remainingUsage < 100) {
                     // Crea una tarea Map/Reduce
                     const mrTask = task.create({ taskType: task.TaskType.MAP_REDUCE });
                     mrTask.scriptId = 'customscript_TKIO_MR_Listas_Negras'; 
@@ -222,78 +222,78 @@ define(['N/currentRecord', 'N/ui/message', 'N/url', 'N/https', 'N/search', 'N/re
                     });
             
                     // Termina la ejecución del client
-                    break;
-                }
+                   // break;
+                //}
                 
-                 else{   
-                    var response = https.post.promise({
-                        url: serviceSL,
-                        body: JSON.stringify(arrSublist[i]),
-                        headers: headerObj
-                    })
-                    .then(function(response){
-                        console.log('RESPUESTA DE LA VALIDACION', response);
-                        var responseBody= JSON.parse(response.body);
-                            completedVendors++;
-                         updatePercentage = Math.round((completedVendors / lengthSublist) * 100);
-                         console.log('PORCENTAJE',updatePercentage);
-                         updateProgressBar(updatePercentage);
+                //  else{   
+                //     var response = https.post.promise({
+                //         url: serviceSL,
+                //         body: JSON.stringify(arrSublist[i]),
+                //         headers: headerObj
+                //     })
+                //     .then(function(response){
+                //         console.log('RESPUESTA DE LA VALIDACION', response);
+                //         var responseBody= JSON.parse(response.body);
+                //             completedVendors++;
+                //          updatePercentage = Math.round((completedVendors / lengthSublist) * 100);
+                //          console.log('PORCENTAJE',updatePercentage);
+                //          updateProgressBar(updatePercentage);
     
-                        log.debug({
-                            title: 'Response',
-                            details: response
-                        });
-                        if(completedVendors==lengthSublist){
-                            msgValida.hide();
-                            var msgPvdValid = message.create({
-                                title: "Proveedor(es) Validado(s)",
-                                message: "Se han validado los proveedores seleccionados",
-                                type: message.Type.CONFIRMATION
-                            });
-                            msgPvdValid.show({ duration: 30000 });
-                            setTimeout(function () {
-                                window.location.reload();
-                            }, 1000);
-                            // setTimeout(function () {
-                            //     const urlSuitlet = url.resolveScript({
-                            //         deploymentId: 'customdeploy_tkio_consulta_list_neg_sl',
-                            //         scriptId: 'customscript_tkio_consulta_list_neg_sl'
-                            //     });
-                            //     window.onbeforeunload = null;
-                            //     window.open(urlSuitlet, '_self');
-                            // }, 10000);  
-                        }  
-                    })
-                    .catch(function onRejected(reason) {
+                //         log.debug({
+                //             title: 'Response',
+                //             details: response
+                //         });
+                //         if(completedVendors==lengthSublist){
+                //             msgValida.hide();
+                //             var msgPvdValid = message.create({
+                //                 title: "Proveedor(es) Validado(s)",
+                //                 message: "Se han validado los proveedores seleccionados",
+                //                 type: message.Type.CONFIRMATION
+                //             });
+                //             msgPvdValid.show({ duration: 30000 });
+                //             setTimeout(function () {
+                //                 window.location.reload();
+                //             }, 1000);
+                //             // setTimeout(function () {
+                //             //     const urlSuitlet = url.resolveScript({
+                //             //         deploymentId: 'customdeploy_tkio_consulta_list_neg_sl',
+                //             //         scriptId: 'customscript_tkio_consulta_list_neg_sl'
+                //             //     });
+                //             //     window.onbeforeunload = null;
+                //             //     window.open(urlSuitlet, '_self');
+                //             // }, 10000);  
+                //         }  
+                //     })
+                //     .catch(function onRejected(reason) {
                      
-                        completedVendors++;
-                        updatePercentage = Math.round((completedVendors / lengthSublist) * 100);
-                        console.log('PORCENTAJE',updatePercentage);
-                        updateProgressBar(updatePercentage);
-                        if(completedVendors==lengthSublist){
-                            msgValida.hide();
-                            var msgPvdValid = message.create({
-                                title: "Proveedor(es) Validado(s)",
-                                message: "No se han logrado validar todos los proveedores, el porcentaje de validación es del "+updatePercentage+"%",
-                                type: message.Type.CONFIRMATION
-                            });
-                            msgPvdValid.show({ duration: 30000 });
-                            // setTimeout(function () {
-                            //     const urlSuitlet = url.resolveScript({
-                            //         deploymentId: 'customdeploy_tkio_consulta_list_neg_sl',
-                            //         scriptId: 'customscript_tkio_consulta_list_neg_sl'
-                            //     });
-                            //     window.onbeforeunload = null;
-                            //     window.open(urlSuitlet, '_self');
-                            // }, 10000);  
-                        }  
+                //         completedVendors++;
+                //         updatePercentage = Math.round((completedVendors / lengthSublist) * 100);
+                //         console.log('PORCENTAJE',updatePercentage);
+                //         updateProgressBar(updatePercentage);
+                //         if(completedVendors==lengthSublist){
+                //             msgValida.hide();
+                //             var msgPvdValid = message.create({
+                //                 title: "Proveedor(es) Validado(s)",
+                //                 message: "No se han logrado validar todos los proveedores, el porcentaje de validación es del "+updatePercentage+"%",
+                //                 type: message.Type.CONFIRMATION
+                //             });
+                //             msgPvdValid.show({ duration: 30000 });
+                //             // setTimeout(function () {
+                //             //     const urlSuitlet = url.resolveScript({
+                //             //         deploymentId: 'customdeploy_tkio_consulta_list_neg_sl',
+                //             //         scriptId: 'customscript_tkio_consulta_list_neg_sl'
+                //             //     });
+                //             //     window.onbeforeunload = null;
+                //             //     window.open(urlSuitlet, '_self');
+                //             // }, 10000);  
+                //         }  
                       
-                        log.debug({
-                            title: 'Invalid Request: ',
-                            details: reason
-                        });
-                    })
-                }
+                //         log.debug({
+                //             title: 'Invalid Request: ',
+                //             details: reason
+                //         });
+                //     })
+                // }
                 }
                 //console.log('VALIDADOS',validados);
                 //console.log('LENGTH SUBLIST',lengthSublist);
@@ -311,7 +311,7 @@ define(['N/currentRecord', 'N/ui/message', 'N/url', 'N/https', 'N/search', 'N/re
                 //     });
                 //     msgErrorRedir.show({ duration: 30000 });  
                 // } 
-              }
+              //}
            
 
               catch (e) {

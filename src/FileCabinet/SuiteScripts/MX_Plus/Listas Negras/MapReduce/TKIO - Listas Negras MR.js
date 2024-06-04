@@ -35,25 +35,25 @@ define(['N/email', 'N/runtime', 'N/search', 'N/record', '../../lib/access_pac', 
                 const getToken = access_pac.getTokenAccess(urlToken, datosAuth[COMPANY.FIELDS.EMAIL]);
                 const tokenSW = getToken.data.token;
                  log.debug('tokenSW', getToken.data.token);
-                let results = {};
-                let situacion = [];
-                    results = getListaNegra(services, tokenSW, parametros.rfc)
-                    log.debug('results', results);
-                    if (results.success) {
-                        situacion.push(results.situacion);
-                    } else {
-                        scriptContext.response.write({
-                            output: ''
-                        });
-                    }
+                // let results = {};
+                // let situacion = [];
+                //     results = getListaNegra(services, tokenSW, parametros.rfc)
+                //     log.debug('results', results);
+                //     if (results.success) {
+                //         situacion.push(results.situacion);
+                //     } else {
+                //         scriptContext.response.write({
+                //             output: ''
+                //         });
+                //     }
                 
-                log.debug('onRequest ~ situacion:', situacion)
-                results.data = parametros
-                results.situacion = situacion;
-                results.details = 'Se ha validado un proveedor';
-                scriptContext.response.write({
-                    output: JSON.stringify(results)
-                });
+                // log.debug('onRequest ~ situacion:', situacion)
+                // results.data = parametros
+                // results.situacion = situacion;
+                // results.details = 'Se ha validado un proveedor';
+                // scriptContext.response.write({
+                //     output: JSON.stringify(results)
+                // });
                 
         }
 
